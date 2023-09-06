@@ -14,9 +14,6 @@ class LRU {
         this.cache = new Map();
     }
     
-    
-    
-    
     getItem(key) {
 
         const item = this.cache.get(key);
@@ -29,12 +26,20 @@ class LRU {
         return item;
     }
 
-    putItem(key, value) {
+    putItem(key, val) {
 
-        if (this.cache.size() > this.capacity) {
-            
+        if (this.cache.has(key)) {
+            this.cache.delete(key);
+        } else if (this.cache.size == this.capacity) {
+            this.cache.delete(this.oldestItem);
         }
+
+        this.cache.set(key, val);
         
+    }
+
+    get oldestItem() {
+        return this.cache.keys().next().value;
     }
 }
 
