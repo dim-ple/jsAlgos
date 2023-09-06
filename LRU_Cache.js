@@ -30,6 +30,10 @@ class LRU {
     }
 
     putItem(key, value) {
+
+        if (this.cache.size() > this.capacity) {
+            
+        }
         
     }
 }
